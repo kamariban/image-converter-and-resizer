@@ -67,6 +67,8 @@ class ImageConverter:
     
 input_folder = "/Users/kamari/Downloads/pokedex/"
 output_folder = "/Users/kamari/Downloads/pokedex_converted/"
+x = None
+y = None
  
 # example usage (update paths before running)
 if __name__ == "__main__":
@@ -75,10 +77,10 @@ if __name__ == "__main__":
         output_folder,       # replace with your destination folder
         "jpg",                # input format
         "png",                # output format
-        to_width=500,         # optional: target width
-        to_height=500         # optional: target height
+        to_width=x,          # optional: target width
+        to_height=y         # optional: target height
     )
 
-    converter.convert()
+converter.convert()
 
     
