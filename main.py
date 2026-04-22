@@ -6,10 +6,11 @@ class ImageConverter:
         # initialize paths and formats
         self.source_path = source_path
         self.dest_path = dest_path
-        self.from_format = from_format.lower()
-        self.to_format = to_format.lower()
         self.to_width = to_width
         self.to_height = to_height
+        self.from_format = from_format.lower()
+        self.to_format = to_format.lower()
+   
 
         # supported file types
         self.supported = ["png", "jpeg", "jpg", "pdf", "bmp", "gif", "tiff", "webp"]
@@ -42,6 +43,10 @@ class ImageConverter:
         try:
             # open image
             img = Image.open(path)
+            
+            # check if resize dimensions are given then resize
+            if self.to_width and self.to_height:
+                img = img.resize((self.to_width, self.to_height))
 
             # create new file name
             base_name = os.path.splitext(os.path.basename(path))[0]
@@ -58,10 +63,7 @@ class ImageConverter:
 
         except Exception as e:
             print(f"Skipped {path}: {e}")
-
-    def resize(self, width, height):
-        pass
-
+        
     
 input_folder = "/Users/kamari/Downloads/pokedex/"
 output_folder = "/Users/kamari/Downloads/pokedex_converted/"
@@ -72,8 +74,9 @@ if __name__ == "__main__":
         input_folder,        # replace with your source folder or file
         output_folder,       # replace with your destination folder
         "jpg",                # input format
-        "png"                 # output format
-        
+        "png",                # output format
+        to_width=500,         # optional: target width
+        to_height=500         # optional: target height
     )
 
     converter.convert()
