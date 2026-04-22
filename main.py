@@ -2,12 +2,14 @@ import os
 from PIL import Image
 
 class ImageConverter:
-    def __init__(self, source_path, dest_path, from_format, to_format):
+    def __init__(self, source_path, dest_path, from_format, to_format,to_width=None, to_height=None):
         # initialize paths and formats
         self.source_path = source_path
         self.dest_path = dest_path
         self.from_format = from_format.lower()
         self.to_format = to_format.lower()
+        self.to_width = to_width
+        self.to_height = to_height
 
         # supported file types
         self.supported = ["png", "jpeg", "jpg", "pdf", "bmp", "gif", "tiff", "webp"]
@@ -57,11 +59,12 @@ class ImageConverter:
         except Exception as e:
             print(f"Skipped {path}: {e}")
 
-
+    def resize(self, width, height):
+        pass
 
     
 input_folder = "/Users/kamari/Downloads/pokedex/"
-output_folder = "/Users/kamari/Downloads/pokedex_converted2/"
+output_folder = "/Users/kamari/Downloads/pokedex_converted/"
  
 # example usage (update paths before running)
 if __name__ == "__main__":
@@ -70,6 +73,7 @@ if __name__ == "__main__":
         output_folder,       # replace with your destination folder
         "jpg",                # input format
         "png"                 # output format
+        
     )
 
     converter.convert()
