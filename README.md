@@ -13,7 +13,6 @@ This is a simple Python script that converts images from one format to another. 
 ---
 
 ## Requirements
-- Python 3.x
 - Pillow library
 
 Install Pillow with:
